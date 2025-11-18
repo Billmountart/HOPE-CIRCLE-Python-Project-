@@ -1,0 +1,69 @@
+{% extends 'adminHome.html' %} 
+{% block content %}
+
+<!-- Section Title -->
+<div class="container section-title" data-aos="fade-up">
+  <h2>Report</h2>
+</div>
+
+<div class="container">
+  <form method="GET">
+    {% csrf_token %}
+    <label for="month">Select Month:</label>
+    <input type="month" id="month" name="month" value="{{ selected_month }}">
+    <button type="submit" class="btn btn-warning">Filter</button>
+    <button onclick="window.print()" type="button" class="btn btn-success">Print</button>
+  </form>
+
+  {% if error %}
+    <div class="alert alert-danger mt-2">{{ error }}</div>
+  {% endif %}
+
+  <!-- Display Totals -->
+  <div class="mt-4 mb-3">
+    <h5><strong>Total Donation:</strong> {{ total_amount }} Rs/-</h5>
+    <h5><strong>Total NGO Received:</strong> {{ total_ngodon }} Rs/-</h5>
+    <h5><strong>Total Convenience Fee:</strong> {{ total_fee }} Rs/-</h5>
+  </div>
+
+  {% if data %}
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover align-middle text-center shadow-sm custom-table">
+      <thead style="background-color: #343a40; color: white;">
+        <tr>
+          <th>Date</th>
+          <th>Event</th>
+          <th>NGO</th>
+          <th>Donor</th>
+          <th>Donation</th>
+          <th>NGO Received</th>
+          <th>Convenience Fee</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in data %}
+        <tr style="background-color: #f8f9fa;">
+          <td>{{ i.date }}</td>
+          <td>{{ i.activity.name }}</td>
+          <td>{{ i.activity.ngo.name }}</td>
+          <td>{{ i.donor.name }}</td>
+          <td style="color: green;">{{ i.amount }} Rs/-</td>
+          <td style="color: blue;">{{ i.ngodon }} Rs/-</td>
+          <td style="color: red;">{{ i.fee }} Rs/-</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+    <center><p class="text-danger fw-bold">No data found for selected month.</p></center>
+  {% endif %}
+</div>
+
+<style>
+  table.custom-table th, table.custom-table td {
+    border: 1px solid #dee2e6;
+  }
+</style>
+
+{% endblock %}

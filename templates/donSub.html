@@ -1,0 +1,56 @@
+{% extends 'donorHome.html' %}
+{% block content %}
+
+
+    <!-- Faq Section -->
+    <section id="faq" class="faq section light-background">
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="content px-xl-5">
+              <h3><span>Recent </span><strong>Notifications</strong></h3>
+              <!-- <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+              </p> -->
+            </div>
+          </div>
+          {% if activities %}
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+            
+            <div class="faq-container">
+                {% for i in activities %}
+              <div class="faq-item faq-active">
+                <h3><span class="num" >{{i.name}}</span></h3>
+                <p><strong>Posted By : </strong>{{i.ngo.name}}</p>
+                <div class="faq-content">
+                  <p>{{i.description}}</p>
+                  <p>Start Date : {{i.sDate}}</p>
+                  <p>End Date : {{i.eDate}}</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+              {% endfor %}
+
+          
+
+
+            </div>
+
+          </div>
+          {% endif %}
+        </div>
+
+      </div>
+
+    </section><!-- /Faq Section -->
+
+{% if messages %}
+  {% for i in messages %}
+    <script>alert("{{ i }}")</script>
+  {% endfor %}
+{% endif %}
+
+{% endblock %}

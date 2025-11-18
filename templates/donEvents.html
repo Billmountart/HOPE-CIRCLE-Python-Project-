@@ -1,0 +1,81 @@
+{% extends 'donorHome.html' %}
+{% block content %}
+
+
+<!-- Services Section -->
+<section id="services" class="services section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2 class="fw-bold">Events</h2>
+    <form method="POST" class="d-flex justify-content-center my-4">
+            {% csrf_token %}
+            <div class="input-group" style="max-width: 600px;">
+                <input type="text" class="form-control" placeholder="Search Events" name="txtSearch" aria-label="Search song">
+                <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </form>
+  </div>
+  
+  
+
+  {% if activity %}
+  <div class="container">
+    <div class="row gy-4">
+      {% for i in activity %}
+      <div class="col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+  <div class="service-item position-relative p-4 shadow rounded bg-white w-100">
+
+    <!-- Top Row: Org Name + Subscribe -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <span class="badge bg-danger px-3 py-2 fs-6">{{ i.ngo.name }}</span>
+      {% if i.ngo.id in subscribed %}
+        <a href="/DonSubscribe?ngo={{ i.ngo.id }}&sts=no" class="btn btn-sm btn-outline-success">Subscribed</a>
+      {% else %}
+        <a href="/DonSubscribe?ngo={{ i.ngo.id }}&sts=yes" class="btn btn-sm btn-outline-warning">Subscribe</a>
+      {% endif %}
+    </div>
+
+    <!-- Campaign Title and Category -->
+    <h4 class="fw-bold text-primary mb-1">{{ i.name }}</h4>
+    <div class="text-muted mb-3">{{ i.category }}</div>
+
+    <!-- Campaign Details -->
+    <p class="mb-2"><strong>Description:</strong> {{ i.description }}</p>
+    <p class="mb-2"><strong>Location:</strong> {{ i.loc }}</p>
+    <p class="mb-2"><strong>Start Date:</strong> {{ i.sDate }}</p>
+    <p class="mb-3"><strong>End Date:</strong> {{ i.eDate }}</p>
+
+    <!-- Donate Button -->
+    {% if today > i.eDate %}
+      <button class="btn btn-secondary w-100" disabled>Donation Closed</button>
+    {% else %}
+      <a href="/donConfirm?id={{ i.id }}" class="btn btn-success w-100">Donate Now</a>
+    {% endif %}
+
+  </div>
+</div>
+
+      {% endfor %}
+    </div>
+  </div>
+  {% else %}
+  <div class="text-center mt-4">
+    <strong>No activities uploaded at the moment.</strong>
+  </div>
+  {% endif %}
+
+</section><!-- /Services Section -->
+
+{% if messages %}
+  {% for i in messages %}
+    <script>alert("{{ i }}")</script>
+  {% endfor %}
+{% endif %}
+
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,57 @@
+{% extends 'adminHome.html' %}
+{% block content %}
+<br><br><br>
+<!-- Services Section -->
+<section id="services" class="services section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Accepted Volunteers</h2>
+    <p></p>
+  </div><!-- End Section Title -->
+
+  {% if req %}
+  <div class="container">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Sl.No</th>
+            <th scope="col">Activity</th>
+            <th scope="col">Volunteer</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">CV</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in req %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.activity.name }}</td>
+            <td>{{ i.volunteer.name }}</td>
+            <td>{{ i.volunteer.email }}</td>
+            <td>{{ i.volunteer.phone }}</td>
+            <td><center><a href="/adminOpen?file={{ i.volunteer.cv }}" >View CV📄</a></center></td>
+            <td>{{ i.status }}</td>
+        </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% else %}
+  <center><b>No Volunteers!</b></center>
+  {% endif %}
+
+</section><!-- /Services Section -->
+
+
+{% for i in messages %}
+<script>
+  alert("{{ i }}");
+</script>
+{% endfor %}
+
+{% endblock %}

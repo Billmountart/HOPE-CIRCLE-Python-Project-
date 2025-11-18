@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>NGO Volunteer and Donation Portal</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+   <!-- Title image -->
+   <link href="static/media/ngologo.png" rel="icon">
+
+  <!-- Favicons -->
+  <!-- <link href="static/assets/img/favicon.png" rel="icon"> -->
+  <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="static/assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NGO Volunteer and Donation Portal
+  * Template URL: https://bootstrapmade.com/bootstrap-3-one-page-template-free-NGO Volunteer and Donation Portal/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="static/assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">Hope Circle</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/" >Home</a></li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Registeration
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                  <li><a class="dropdown-item" href="/ngoReg">Ngo Registeration</a></li>
+                  <li><a class="dropdown-item" href="/volReg">Volunteer Registeration</a></li>
+                  <li><a class="dropdown-item" href="/donReg">Donor Registeration</a></li>
+              </ul>
+          </li>
+
+
+          <li><a href="/blog">Blogs</a></li>
+          <li><a href="/volChat">ChatBot</a></li>
+          <li><a href="/login">Login</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+
+
+<main class="main">
+
+ 
+
+  <!-- Blog Display Section -->
+  <section id="blog" class="blog section mt-5">
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Blog Posts</h2>
+      <p>Latest updates and articles</p>
+    </div>
+
+    {% if blogs %}
+    <div class="container blog-container">
+  {% for blog_post in blogs %}
+  <div class="blog-card d-flex bg-white rounded shadow-sm overflow-hidden mb-4" data-aos="fade-up">
+    <div class="image-slider w-50">
+      <div class="swiper mySwiper1 h-100">
+        <div class="swiper-wrapper">
+          {% for img in blog_post.image_set.all %}
+          <div class="swiper-slide">
+            <img src="static{{ img.image.url }}" class="w-100 h-100 object-fit-cover" alt="Blog Image">
+          </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+
+    <!-- Blog Content -->
+    <div class="blog-content p-4 w-50 d-flex flex-column justify-content-between">
+      <div>
+        <h3 class="fw-bold">{{ blog_post.title }}</h3>
+        <p class="text-muted">{{ blog_post.description }}</p>
+      </div>
+      <div class="pt-3 border-top mt-3">
+        <p class="mb-0">
+          <small class="text-muted">
+            <strong>Posted by:</strong> {{ blog_post.ngo.name }}<br>
+            <strong>Date:</strong> {{ blog_post.date }}
+          </small>
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+    {% else %}
+    <center><b>No blog posts available!</b></center>
+    {% endif %}
+  </section>
+
+</main>
+
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+  <i class="bi bi-arrow-up-short"></i>
+</a>
+
+<!-- Preloader -->
+<div id="preloader"></div>
+
+<!-- JS Files -->
+<script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="static/assets/vendor/php-email-form/validate.js"></script>
+<script src="static/assets/vendor/aos/aos.js"></script>
+<script src="static/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="static/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="static/assets/js/main.js"></script>
+
+<!-- Swiper Slider Init -->
+<script>
+  const sliders = document.querySelectorAll('.mySwiper1');
+  sliders.forEach(slider => {
+    new Swiper(slider, {
+      loop: true,
+      pagination: {
+        el: slider.querySelector('.swiper-pagination'),
+        clickable: true,
+      },
+      navigation: {
+        nextEl: slider.querySelector('.swiper-button-next'),
+        prevEl: slider.querySelector('.swiper-button-prev'),
+      },
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false
+      }
+    });
+  });
+</script>
+
+<!-- Flash Messages -->
+{% for i in messages %}
+<script>
+  alert("{{ i }}");
+</script>
+{% endfor %}
+
+<!-- Blog Styling -->
+<style>
+  .blog-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  .blog-card {
+    flex-direction: row;
+    background: #fff;
+  }
+  .blog-content h3 {
+    font-size: 24px;
+  }
+  .blog-content p {
+    font-size: 16px;
+  }
+  .swiper-slide img {
+    object-fit: cover;
+    height: 100%;
+  }
+  @media (max-width: 768px) {
+    .blog-card {
+      flex-direction: column;
+    }
+    .image-slider, .blog-content {
+      width: 100% !important;
+    }
+  }
+</style>
+
+
+
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+       
+
+       
+
+        
+
+      </div>
+    </div>
+
+    <div class="container footer-top py-5">
+  <div class="row gy-6py text-start">
+
+    <!-- About Us with Social Icons -->
+    <div class="col-lg-4 col-md-6">
+      <h4>About Us</h4>
+      <p>
+        We are committed to connecting volunteers, donors, and NGOs to foster positive social impact. 
+        Join us in making the world a better place.
+      </p>
+
+      <h5 class="mt-4">Follow Us</h5>
+      <div class="d-flex">
+        <a href="https://www.instagram.com" target="_blank" class="me-3 ">
+          <i class="bi bi-instagram fs-4"></i>
+        </a>
+        <a href="https://www.facebook.com" target="_blank" class="me-3 ">
+          <i class="bi bi-facebook fs-4"></i>
+        </a>
+        <a href="https://www.linkedin.com" target="_blank" class="me-3 ">
+          <i class="bi bi-linkedin fs-4"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="col-lg-3 col-md-6">
+      <h4>Quick Links</h4>
+      <ul class="list-unstyled">
+        <li><a href="/">Home</a></li>
+        <li><a href="/ngoReg">NGO Register</a></li>
+        <li><a href="/volReg">Volunteer Register</a></li>
+        <li><a href="/donReg">Donor Register</a></li>
+        <li><a href="/login">Login</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Us -->
+    <div class="col-lg-4 col-md-6">
+      <h4>Contact Us</h4>
+      <p>
+        NGO Volunteer & Donation Portal<br>
+        Ernakulam, Kerala, India<br><br>
+        <strong>Email:</strong> support@ngovolunteer.org<br>
+        <strong>Phone:</strong> +91 98765 00000<br>
+      </p>
+    </div>
+
+  </div>
+</div>
+<div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Hope Circle</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+   
+      </div>
+    </div>
+
+  </footer>
+
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+ 
+
+  <!-- Vendor JS Files -->
+  <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/assets/vendor/php-email-form/validate.js"></script>
+  <script src="static/assets/vendor/aos/aos.js"></script>
+  <script src="static/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="static/assets/js/main.js"></script>
+
+</body>
+
+</html>

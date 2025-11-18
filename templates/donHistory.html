@@ -1,0 +1,62 @@
+{% extends 'donorHome.html' %}
+{% block content %}
+
+
+<br><br>
+<!-- Services Section -->
+<section id="services" class="services section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Donation History</h2>
+    <p></p>
+  </div><!-- End Section Title -->
+
+  {% if donations %}
+  <div class="container">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Sl.No</th>
+            <th scope="col">Activity</th>
+            <th scope="col">Description</th>
+            <th scope="col">Donation Fee</th>
+            <th scope="col">Convenience Fee</th>
+            <th scope="col">Receipt</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in donations %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.activity.name }}</td>
+            <td>{{ i.activity.description }}</td>
+            <td>{{ i.amount }}</td>
+            <td>{{ i.fee }}</td>
+            <td><center><a href="/donReciept?id={{ i.id }}" >View Reciept📄</a></center></td>
+            
+        </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% else %}
+  <center><b>No Donations!</b></center>
+  {% endif %}
+
+</section><!-- /Services Section -->
+
+{% if messages %}
+  {% for i in messages %}
+    <script>alert("{{ i }}")</script>
+  {% endfor %}
+{% endif %}
+
+{% endblock %}
+
+
+
+
+

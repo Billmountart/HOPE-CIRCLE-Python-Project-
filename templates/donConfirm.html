@@ -1,0 +1,55 @@
+{% extends 'donorHome.html' %}
+{% block content %}
+
+<section class="section py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 col-md-10">
+        <div class="card shadow rounded p-4">
+          <h3 class="text-center mb-4 text-primary fw-bold">Donation Confirmation</h3>
+
+          <form method="POST" action="">
+            {% csrf_token %}
+
+            <div class="mb-3">
+              <label for="amount" class="form-label fw-semibold">Enter Donation Amount (₹)</label>
+              <input type="number" id="amount" name="amount" class="form-control" required oninput="showFeeInfo()" min="1">
+              <input type="text" name="activity_id" value="{{ id }}" hidden>
+            </div>
+
+            <div id="feeInfo" class="alert alert-info d-none"></div>
+
+            
+
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-success">Confirm & Proceed</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function showFeeInfo() {
+    const amount = parseFloat(document.getElementById("amount").value) || 0;
+    const feeInfo = document.getElementById("feeInfo");
+
+    if (amount > 1000) {
+      feeInfo.classList.remove("d-none");
+      feeInfo.innerHTML = `<strong>Note:</strong> As per site policy, ₹15 from your donation will be used for platform maintenance. Thank you for supporting us!`;
+    } else if (amount > 500) {
+      feeInfo.classList.remove("d-none");
+      feeInfo.innerHTML = `<strong>Note:</strong> ₹10 from your donation will be used for platform maintenance. We appreciate your contribution!`;
+    } else if (amount > 0) {
+      feeInfo.classList.remove("d-none");
+      feeInfo.innerHTML = `<strong>Note:</strong> No maintenance fee will be deducted for donations ₹500 or below. Thank you for your support!`;
+    } else {
+      feeInfo.classList.add("d-none");
+    }
+  }
+</script>
+
+{% endblock %}

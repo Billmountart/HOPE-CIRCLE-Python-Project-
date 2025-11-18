@@ -1,0 +1,204 @@
+{% extends 'ngoHome.html' %}
+{% block content %}
+<main class="main">
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact section">
+
+    <div class="container section-title" data-aos="fade-up">
+      <br><br><br><br><br>
+      <h2>Add Activity</h2>
+    </div>
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <form action="" method="post" enctype="multipart/form-data"
+            class="p-4 bg-light rounded shadow-sm"
+            data-aos="fade-up" data-aos-delay="200">
+
+            {% csrf_token %}
+
+            <!-- Activity Name -->
+            <div class="mb-3">
+              <label for="activityName" class="form-label">Activity Name</label>
+              <input type="text" id="activityName" name="name" class="form-control" placeholder="Enter activity name">
+              <small class="text-danger d-none" id="nameError">*This field is mandatory</small>
+            </div>
+
+            <!-- Category -->
+            <div class="mb-3">
+              <label for="category" class="form-label">Category</label>
+              <input type="text" id="category" name="category" class="form-control" placeholder="Enter Category">
+              <small class="text-danger d-none" id="categoryError">*This field is mandatory</small>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea id="description" name="description" rows="4" class="form-control" placeholder="Enter activity description"></textarea>
+              <small class="text-danger d-none" id="descriptionError">*This field is mandatory</small>
+            </div>
+
+            <!-- Event Location -->
+            <div class="mb-3">
+              <label for="eventLocation" class="form-label">Event Location</label>
+              <input type="text" id="eventLocation" name="loc" class="form-control" placeholder="Enter event location">
+              <small class="text-danger d-none" id="locationError">*This field is mandatory</small>
+            </div>
+
+            <!-- Date Fields -->
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="start_date" class="form-label">Start Date</label>
+                <input type="date" class="form-control" id="start_date" name="sDate" onfocus="checkdate('start_date')">
+                <small class="text-danger d-none" id="startDateError">*This field is mandatory</small>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="end_date" class="form-label">End Date</label>
+                <input type="date" class="form-control" id="end_date" name="eDate" onfocus="checkdate('end_date')">
+                <small class="text-danger d-none" id="endDateError">*This field is mandatory</small>
+              </div>
+            </div>
+
+            <!-- Number of Volunteers -->
+            <div class="mb-3">
+              <label for="volunteers" class="form-label">Number of Volunteers Needed</label>
+              <input type="number" id="volunteers" name="volunteers_needed" class="form-control" min="1">
+              <small class="text-danger d-none" id="volunteerError">*This field is mandatory</small>
+            </div>
+
+            <!-- Email Address -->
+            <div class="mb-3">
+              <label for="orgEmail" class="form-label">Email Address</label>
+              <input type="email" id="orgEmail" name="email" class="form-control" value="{{ email }}" placeholder="Enter email address">
+              <small class="text-danger d-none" id="emailError">*This field is mandatory</small>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="mb-3">
+              <label for="orgPhone" class="form-label">Contact Number</label>
+              <input type="tel" id="orgPhone" name="phone" class="form-control" pattern="[6789][0-9]{9}" maxlength="10" value="{{ phone }}" placeholder="Enter contact number">
+              <small class="text-danger d-none" id="phoneError">*This field is mandatory</small>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center mt-4">
+              <button type="submit" class="btn btn-primary px-5 py-2">Submit</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services section">
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Uploaded Activities</h2>
+    </div>
+
+    {% if activity %}
+    <div class="container">
+      <div class="row gx-4 gy-4">
+        {% for i in activity %}
+        <div class="col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-item position-relative p-4 shadow rounded bg-white w-100">
+            <h4><a href="#" class=" text-primary fw-bold">{{ i.name }}</a></h4>
+            <p class="mb-1"><strong>Description:</strong> {{ i.description }}</p>
+            <p class="mb-1"><strong>Location:</strong> {{ i.loc }}</p>
+            <p class="mb-1"><strong>Start Date:</strong> {{ i.sDate }}</p>
+            <p class="mb-1"><strong>End Date:</strong> {{ i.eDate }}</p>
+            <p class="mb-0"><strong>Volunteers Needed:</strong> {{ i.volunteers_needed }}</p>
+            <a href="/ngoVolRequest?id={{ i.id }}" class="btn btn-primary">Volunteer Requests</a> 
+            <a href="/ngoDonations?id={{ i.id }}" class="btn btn-primary">Donations</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% else %}
+    <center><b>No Activities Uploaded!</b></center>
+    {% endif %}
+  </section>
+
+</main>
+
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+  <i class="bi bi-arrow-up-short"></i>
+</a>
+
+<!-- Preloader -->
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="static/assets/vendor/php-email-form/validate.js"></script>
+<script src="static/assets/vendor/aos/aos.js"></script>
+<script src="static/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="static/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Main JS File -->
+<script src="static/assets/js/main.js"></script>
+
+<!-- Date Validation -->
+<script>
+  function checkdate(id) {
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementById(id).setAttribute('min', today);
+  }
+
+  window.onload = function () {
+    checkdate('start_date');
+    checkdate('end_date');
+  };
+</script>
+
+<!-- Real-time Validation Script -->
+<script>
+  document.querySelector('form').addEventListener('submit', function (e) {
+    let hasError = false;
+
+    const fields = [
+      { id: 'activityName', errorId: 'nameError' },
+      { id: 'category', errorId: 'categoryError' },
+      { id: 'description', errorId: 'descriptionError' },
+      { id: 'eventLocation', errorId: 'locationError' },
+      { id: 'start_date', errorId: 'startDateError' },
+      { id: 'end_date', errorId: 'endDateError' },
+      { id: 'volunteers', errorId: 'volunteerError' },
+      { id: 'orgEmail', errorId: 'emailError' },
+      { id: 'orgPhone', errorId: 'phoneError' }
+    ];
+
+    fields.forEach(field => {
+      const input = document.getElementById(field.id);
+      const error = document.getElementById(field.errorId);
+
+      if (!input.value.trim()) {
+        error.classList.remove('d-none');
+        hasError = true;
+      } else {
+        error.classList.add('d-none');
+      }
+    });
+
+    if (hasError) {
+      e.preventDefault();
+    }
+  });
+</script>
+
+<!-- Django Flash Messages -->
+{% for i in messages %}
+<script>
+  alert("{{ i }}");
+</script>
+{% endfor %}
+{% endblock %}

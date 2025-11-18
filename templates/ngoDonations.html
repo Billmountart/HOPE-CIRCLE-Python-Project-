@@ -1,0 +1,59 @@
+{% extends 'ngoHome.html' %}
+{% block content %}
+<br><br><br>
+
+<section id="services" class="services section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Donations</h2>
+    <p></p>
+  </div><!-- End Section Title -->
+
+  {% if req %}
+  <div class="container">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Activity</th>
+            <th scope="col">Donor</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Donation</th>
+            <th scope="col">Convenience Fee</th>
+            <th scope="col">Recieved</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in req %}
+          <tr>
+            <td>{{ i.date}} <br> {{i.time}}</td>
+            <td>{{ i.activity.name }}</td>
+            <td>{{ i.donor.name }}</td>
+            <td>{{ i.donor.email }}</td>
+            <td>{{ i.donor.phone }}</td>
+            <td>{{ i.amount }} Rs/-</td>
+            <td>{{ i.fee }} Rs/-</td>
+            <td>{{ i.ngodon }} Rs/-</td>
+        </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% else %}
+  <center><b>No Donation!</b></center>
+  {% endif %}
+
+</section><!-- /Services Section -->
+
+
+{% for i in messages %}
+<script>
+  alert("{{ i }}");
+</script>
+{% endfor %}
+<br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

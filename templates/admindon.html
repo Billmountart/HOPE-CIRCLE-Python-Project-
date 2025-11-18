@@ -1,0 +1,42 @@
+{% extends 'adminHome.html'%} {% block content %}
+<!-- Services Section -->
+   <section id="services" class="services section">
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Registered Donors</h2>
+
+  </div><!-- End Section Title -->
+
+  {% if don %}
+  <div class="container">
+    <div class="row gy-4">
+      {% for i in don %}
+      <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-item position-relative shadow rounded-4 p-3 bg-white w-100">
+          <div class="icon mb-3 text-primary fs-3"></div>
+          <a href="/static/media/{{ i.photo }}" target="_blank">
+            <img src="/static/media/{{ i.photo  }}" alt="License" class="img-fluid rounded" style="height: 200px; object-fit: cover; width: 100%;">
+          </a>
+          <h4 class="fw-bold text-dark mb-2">
+            <a href="" class="text-decoration-none text-dark">{{ i.name }}</a>
+          </h4>
+          <p class="mb-1"><strong>Email:</strong> {{ i.email }}</p>
+          <p class="mb-1"><strong>Phone:</strong> {{ i.phone }}</p>
+          <p class="mb-3"><strong>Address:</strong> {{ i.address }}</p>
+          {% if i.user.is_active %}
+             <a href="/adminActiveDon?id={{ i.user.id }}&status=0" class="btn btn-danger w-100">Make Inactive</a>
+             {% else %}
+             <a href="/adminActiveDon?id={{ i.user.id }}&status=1" class="btn btn-success w-100">Make Active</a>
+            {% endif %}
+         
+          
+        </div>
+      </div><!-- End Service Item -->
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</section><!-- /Services Section -->
+
+
+{% endblock %}

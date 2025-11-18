@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>NGO Volunteer and Donation Portal</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+
+  <!-- Title image -->
+   <link href="static/media/ngologo.png" rel="icon">
+
+  <!-- Favicons -->
+  <!-- <link href="static/assets/img/favicon.png" rel="icon"> -->
+  <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="static/assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NGO Volunteer and Donation Portal
+  * Template URL: https://bootstrapmade.com/bootstrap-3-one-page-template-free-NGO Volunteer and Donation Portal/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="static/assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">Hope Circle</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/" >Home</a></li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Registeration
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                  <li><a class="dropdown-item" href="/ngoReg">Ngo Registeration</a></li>
+                  <li><a class="dropdown-item" href="/volReg">Volunteer Registeration</a></li>
+                  <li><a class="dropdown-item" href="/donReg">Donor Registeration</a></li>
+              </ul>
+          </li>
+
+
+          <li><a href="/blog">Blogs</a></li>
+          <li><a href="/volChat">ChatBot</a></li>
+          <li><a href="/login">Login</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+{% block content %}
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <div class="carousel-item active">
+          <img src="static/assets/img/hero-carousel/hero-carousel-1.jpg" alt="">
+          <div class="carousel-container">
+            <h2>NGO Volunteer and Donation Portal</h2>
+            <p>Join hands to make a difference. Our portal connects passionate volunteers with impactful NGOs and provides a platform for secure and transparent donations. Together, we can create positive change in communities that need it most.</p>
+
+            <!-- <a href="#featured-services" class="btn-get-started">Get Started</a> -->
+          </div>
+        </div><!-- End Carousel Item -->
+
+        <div class="carousel-item">
+          <img src="static/assets/img/hero-carousel/hero-carousel-2.jpg" alt="">
+          <div class="carousel-container">
+            <h2>Join the movement to make a lasting impact.</h2>
+            <p>Empowering Goodness Together - Uniting NGOs, volunteers, and donors to build a better tomorrow. Where Compassion Meets Action — Be the reason someone believes in change.</p>
+            <!-- <a href="#featured-services" class="btn-get-started">Get Started</a> -->
+          </div>
+        </div><!-- End Carousel Item -->
+
+        <div class="carousel-item">
+          <img src="static/assets/img/hero-carousel/hero-carousel-3.jpg" alt="">
+          <div class="carousel-container">
+           <h2>Connect, support, and serve with purpose</h2>
+            <p>Engage with verified NGOs and real-world missions. Connect. Contribute. Change Lives. One platform for social impact. Together, we can create positive change in communities that need it most.</p>
+            <!-- <a href="#featured-services" class="btn-get-started">Get Started</a> -->
+          </div>
+        </div><!-- End Carousel Item -->
+
+        <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+        <ol class="carousel-indicators"></ol>
+
+      </div>
+
+    </section><!-- /Hero Section -->
+
+
+
+   
+
+   
+
+    
+
+  </main>
+{% endblock %}
+  
+<footer id="footer" class="footer dark-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+       
+
+       
+
+        
+
+      </div>
+    </div>
+
+    <div class="container footer-top py-5">
+  <div class="row gy-6py text-start">
+
+    <!-- About Us with Social Icons -->
+    <div class="col-lg-4 col-md-6">
+      <h4>About Us</h4>
+      <p>
+        We are committed to connecting volunteers, donors, and NGOs to foster positive social impact. 
+        Join us in making the world a better place.
+      </p>
+
+      <h5 class="mt-4">Follow Us</h5>
+      <div class="d-flex">
+        <a href="https://www.instagram.com" target="_blank" class="me-3 ">
+          <i class="bi bi-instagram fs-4"></i>
+        </a>
+        <a href="https://www.facebook.com" target="_blank" class="me-3 ">
+          <i class="bi bi-facebook fs-4"></i>
+        </a>
+        <a href="https://www.linkedin.com" target="_blank" class="me-3 ">
+          <i class="bi bi-linkedin fs-4"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="col-lg-3 col-md-6">
+      <h4>Quick Links</h4>
+      <ul class="list-unstyled">
+        <li><a href="/">Home</a></li>
+        <li><a href="/ngoReg">NGO Register</a></li>
+        <li><a href="/volReg">Volunteer Register</a></li>
+        <li><a href="/donReg">Donor Register</a></li>
+        <li><a href="/login">Login</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Us -->
+    <div class="col-lg-4 col-md-6">
+      <h4>Contact Us</h4>
+      <p>
+        NGO Volunteer & Donation Portal<br>
+        Ernakulam, Kerala, India<br><br>
+        <strong>Email:</strong> support@ngovolunteer.org<br>
+        <strong>Phone:</strong> +91 98765 00000<br>
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Hope Circle</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+   
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/assets/vendor/php-email-form/validate.js"></script>
+  <script src="static/assets/vendor/aos/aos.js"></script>
+  <script src="static/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="static/assets/js/main.js"></script>
+
+</body>
+
+</html>

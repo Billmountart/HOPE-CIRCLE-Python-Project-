@@ -1,0 +1,55 @@
+{% extends 'volunteerHome.html' %}
+{% block content %}
+<!-- Services Section -->
+<section id="services" class="services section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Enrolled Events</h2>
+    <p></p>
+  </div><!-- End Section Title -->
+
+  {% if act %}
+  <div class="container">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">SL.NO</th>
+            <th scope="col">Activity</th>
+            <th scope="col">Description</th>
+            <th scope="col">Location</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in act %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.activity.name }}</td>
+            <td>{{ i.activity.description }}</td>
+            <td>{{ i.activity.loc }}</td>
+            <td>{{ i.activity.sDate }}</td>
+            <td>{{ i.activity.eDate }}</td>
+            <td>{{ i.status }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% else %}
+  <center><b>No Activities Enrolled!</b></center>
+  {% endif %}
+
+</section><!-- /Services Section -->
+
+{% if messages %}
+  {% for i in messages %}
+    <script>alert("{{ i }}")</script>
+  {% endfor %}
+{% endif %}
+
+{% endblock %}

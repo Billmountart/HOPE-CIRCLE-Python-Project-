@@ -1,0 +1,146 @@
+{% extends 'adminHome.html' %}
+{% block content %}
+
+<main class="main">
+
+
+
+  <!-- Blog Display Section -->
+  <section id="blog" class="blog section mt-5">
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Blogs</h2>
+      <p>Latest updates and articles</p>
+    </div>
+
+    {% if blogs %}
+    <div class="container blog-container">
+  {% for blog_post in blogs %}
+  <div class="blog-card d-flex bg-white rounded shadow-sm overflow-hidden mb-4" data-aos="fade-up">
+    <div class="image-slider w-50">
+      <div class="swiper mySwiper1 h-100">
+        <div class="swiper-wrapper">
+          {% for img in blog_post.image_set.all %}
+          <div class="swiper-slide">
+            <img src="static{{ img.image.url }}" class="w-100 h-100 object-fit-cover" alt="Blog Image">
+          </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+
+    <!-- Blog Content -->
+    <div class="blog-content p-4 w-50 d-flex flex-column justify-content-between">
+      <div>
+        <h3 class="fw-bold">{{ blog_post.title }}</h3>
+        <p class="text-muted">{{ blog_post.description }}</p>
+      </div>
+      <div class="pt-3 border-top mt-3 d-flex justify-content-between align-items-center">
+  <div>
+    <p class="mb-0">
+      <small class="text-muted">
+        <strong>Posted by:</strong> {{ blog_post.ngo.name }}<br>
+        <strong>Date:</strong> {{ blog_post.date }}
+      </small>
+    </p>
+  </div>
+  <div>
+    <a href="/blogDelet?bid={{blog_post.id}}" class="btn btn-danger btn-sm">Delete</a>
+  </div>
+</div>
+
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+    {% else %}
+    <center><b>No Blog Uploaded!</b></center>
+    {% endif %}
+  </section>
+
+</main>
+
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+  <i class="bi bi-arrow-up-short"></i>
+</a>
+
+
+
+<!-- JS Files -->
+<script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="static/assets/vendor/php-email-form/validate.js"></script>
+<script src="static/assets/vendor/aos/aos.js"></script>
+<script src="static/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="static/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="static/assets/js/main.js"></script>
+
+<!-- Swiper Slider Init -->
+<script>
+  const sliders = document.querySelectorAll('.mySwiper1');
+  sliders.forEach(slider => {
+    new Swiper(slider, {
+      loop: true,
+      pagination: {
+        el: slider.querySelector('.swiper-pagination'),
+        clickable: true,
+      },
+      navigation: {
+        nextEl: slider.querySelector('.swiper-button-next'),
+        prevEl: slider.querySelector('.swiper-button-prev'),
+      },
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false
+      }
+    });
+  });
+</script>
+
+<!-- Flash Messages -->
+{% for i in messages %}
+<script>
+  alert("{{ i }}");
+</script>
+{% endfor %}
+
+<!-- Blog Styling -->
+<style>
+  .blog-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  .blog-card {
+    flex-direction: row;
+    background: #fff;
+  }
+  .blog-content h3 {
+    font-size: 24px;
+  }
+  .blog-content p {
+    font-size: 16px;
+  }
+  .swiper-slide img {
+    object-fit: cover;
+    height: 100%;
+  }
+  @media (max-width: 768px) {
+    .blog-card {
+      flex-direction: column;
+    }
+    .image-slider, .blog-content {
+      width: 100% !important;
+    }
+  }
+</style>
+
+{% endblock %}

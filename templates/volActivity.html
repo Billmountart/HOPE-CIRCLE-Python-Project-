@@ -1,0 +1,102 @@
+{% extends 'volunteerHome.html' %}
+{% block content %}
+<!-- Services Section -->
+<section id="services" class="services section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2 class="fw-bold">Upcoming Events</h2>
+    <p class="text-muted">Browse through the latest volunteer opportunities.</p>
+    <form method="POST" class="d-flex justify-content-center my-4">
+            {% csrf_token %}
+            <div class="input-group" style="max-width: 600px;">
+                <input type="text" class="form-control" placeholder="Search Events" name="txtSearch" aria-label="Search song">
+                <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </form>
+  </div>
+  
+  {% if activity %}
+  <div class="container">
+    <div class="row gy-4">
+      {% for i in activity %}
+      <div class="col-xl-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+  <div class="service-item position-relative p-4 shadow rounded bg-white w-100">
+
+    <!-- Top Row: Org Name + Subscribe -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <span class="badge bg-danger px-3 py-2 fs-6">{{ i.ngo.name }}</span>
+      {% if i.ngo.id in subscribed %}
+        <a href="/VolSubscribe?ngo={{ i.ngo.id }}&sts=no" class="btn btn-sm btn-outline-success">Subscribed</a>
+      {% else %}
+        <a href="/VolSubscribe?ngo={{ i.ngo.id }}&sts=yes" class="btn btn-sm btn-outline-warning">Subscribe</a>
+      {% endif %}
+    </div>
+
+    <!-- Title -->
+    <h4 class="fw-bold text-primary mb-1">{{ i.name }}</h4>
+<div class="text-muted mb-3">{{ i.category }}</div>
+
+    
+    <!-- Campaign Details -->
+    <p class="mb-2"><strong>Description:</strong> {{ i.description }}</p>
+    <p class="mb-2"><strong>Location:</strong> {{ i.loc }}</p>
+    <p class="mb-2"><strong>Start Date:</strong> {{ i.sDate }}</p>
+    <p class="mb-2"><strong>End Date:</strong> {{ i.eDate }}</p>
+
+    <!-- Volunteers Needed -->
+    {% if i.volunteers_needed > 0 %}
+      <p class="mb-3"><strong>Volunteers Needed:</strong> {{ i.volunteers_needed }} no.s</p>
+    {% else %}
+      <p class="mb-3">
+        <strong>Volunteers Needed:</strong> 
+        <span class="text-danger">{{ i.volunteers_needed }} no.s</span>
+      </p>
+    {% endif %}
+
+    <!-- Action Button -->
+    {% if today <= i.eDate %}
+      {% if i.volunteers_needed > 0 %}
+        <div class="d-flex gap-2">
+          {% if i.flag %}
+            <a href="#" class="btn btn-success w-100">Applied</a>
+          {% else %}
+            <a href="/volRequest?id={{ i.id }}" class="btn btn-primary w-100">Enroll</a>
+          {% endif %}
+        </div>
+      {% else %}
+        {% if i.flag %}
+          <a href="#" class="btn btn-success w-100">Applied</a>
+        {% else %}
+          <button class="btn btn-secondary w-100" disabled>No Volunteers Needed</button>
+        {% endif %}
+      {% endif %}
+    {% else %}
+      {% if i.flag %}
+        <a href="#" class="btn btn-success w-100">Applied</a>
+      {% else %}
+        <button class="btn btn-secondary w-100" disabled>Application Closed</button>
+      {% endif %}
+    {% endif %}
+
+  </div>
+</div>
+
+      {% endfor %}
+    </div>
+  </div>
+  {% else %}
+  <div class="text-center mt-4">
+    <strong>No activities uploaded at the moment.</strong>
+  </div>
+  {% endif %}
+
+</section><!-- /Services Section -->
+
+{% if messages %}
+  {% for i in messages %}
+    <script>alert("{{ i }}")</script>
+  {% endfor %}
+{% endif %}
+
+{% endblock %}
